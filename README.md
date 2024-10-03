@@ -4,7 +4,7 @@ Code for the EMNLP 2024 (long talk) paper: "CommonIT: Commonality-Aware Instruct
 
 ### **Overview**
 
-We propose CommonIT to enhance the instruction-following capabilities of LLMs.
+We propose CommonIT to enhance the instruction-following capabilities of LLMs. The core of the method is to use the commonality of the data to update similar samples within a batch. This method is particularly suitable when the user has highly compartmentalized the data for different tasks.
 
 <div align="center">
     <img src="llmzoo/figures/method.jpg" width=500></img>
