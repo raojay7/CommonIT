@@ -38,6 +38,51 @@ The core code can be found in MultiSubsetBatchSampler and DistributedSubsetRando
 Using open-instruct for evaluating:
 [URL: https://github.com/allenai/open-instruct/tree/main](https://github.com/allenai/open-instruct/tree/main)
 
+- MMLU
+
+```
+# Evaluating llama 7B model using 5 shot directly
+python -m eval.mmlu.run_eval \
+    --ntrain 5 \
+    --data_dir data/eval/mmlu \
+    --save_dir results/mmlu/llama-7B-5shot \
+    --model_name_or_path ../hf_llama_models/7B \
+    --tokenizer_name_or_path ../hf_llama_models/7B \
+    --eval_batch_size 4 \
+```
+- BBH
+```
+  # Evaluating llama 7B model using chain-of-thought
+python -m eval.bbh.run_eval \
+    --data_dir data/eval/bbh \
+    --save_dir results/bbh/llama-7B-cot/ \
+    --model ../hf_llama_models/7B \
+    --tokenizer ../hf_llama_models/7B \
+    --max_num_examples_per_task 40 \
+```
+- GSM
+```
+# Evaluating llama 7B model using chain-of-thought
+python -m eval.gsm.run_eval \
+    --data_dir data/eval/gsm/ \
+    --max_num_examples 200 \
+    --save_dir results/gsm/llama-7B-cot-8shot \
+    --model ../hf_llama_models/7B \
+    --tokenizer ../hf_llama_models/7B \
+    --n_shot 8 \
+```
+- CODE
+```
+# Evaluating llama 7B model using temperature 0.8 to get the pass@10 score
+python -m eval.codex_humaneval.run_eval \
+    --data_file data/eval/codex_humaneval/HumanEval.jsonl.gz \
+    --eval_pass_at_ks 10 \
+    --unbiased_sampling_size_n 20 \
+    --temperature 0.8 \
+    --save_dir results/codex_humaneval/llama_7B_temp_0_8 \
+    --model ../hf_llama_models/7B/ \
+    --tokenizer ../hf_llama_models/7B/ \
+```
 
 ## **📝 Citation**<a name="citation"></a>
 If you find this repo useful, please cite our paper as:
